@@ -3,20 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Bengali Softwares App Store</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-
 body{
 margin:0;
 font-family:Poppins;
 background:#f1f3f6;
 }
-
-/* header */
 
 header{
 background:#00c853;
@@ -26,8 +22,6 @@ font-size:22px;
 font-weight:bold;
 text-align:center;
 }
-
-/* search */
 
 .search-box{
 padding:15px;
@@ -43,8 +37,6 @@ border-radius:25px;
 border:1px solid #ccc;
 font-size:16px;
 }
-
-/* app grid */
 
 .apps{
 display:flex;
@@ -115,7 +107,9 @@ background:white;
 padding:20px;
 border-radius:15px;
 max-width:400px;
+width:90%;
 text-align:center;
+position:relative;
 }
 
 .popup-box img{
@@ -133,7 +127,7 @@ border-radius:10px;
 cursor:pointer;
 }
 
-/* contact section */
+/* contact */
 
 .contact{
 background:white;
@@ -151,51 +145,43 @@ transition:0.3s;
 .contact-icons img:hover{
 transform:scale(1.2);
 }
-
 </style>
-
 </head>
+
 <body>
 
-
-<header>
-Bengali Softwares App Store
-</header>
-
+<header>Bengali Softwares App Store</header>
 
 <div class="search-box">
 <input type="text" placeholder="Search app..." onkeyup="searchApp(this.value)">
 </div>
 
-
 <section class="apps">
 
-
-<!-- App lal blood -->
+<!-- Lal Blood -->
 <div class="app" data-name="Lal Blood">
-
 <img src="icon.png">
-
 <h3>Lal Blood</h3>
 
 <div class="btn details"
 onclick="showDetails(
 'Lal Blood',
-'Find blood donors easily. Fast and secure app.',
+'Find blood donors easily.\nFast and secure app.',
 'myapp.apk',
 ['screenshot1.png','screenshot2.png','screenshot3.png']
 )">
 Details
 </div>
 
-<a href="myapp.apk" class="btn download">
-Download
-</a>
-
+<a href="myapp.apk" class="btn download">Download</a>
 </div>
 
 
-<!-- App love -->
+<!-- Love Calculator -->
+<div class="app" data-name="Love Calculator">
+<img src="love_icon.png">
+<h3>Love Calculator</h3>
+
 <div class="btn details"
 onclick="showDetails(
 'Love Calculator',
@@ -203,134 +189,100 @@ onclick="showDetails(
 
 লাভ ক্যালকুলেটর (Love Calculator)
 
-🔹 ছোট বিবরণ (Short Description):
-
+🔹 ছোট বিবরণ:
 সহজেই জানুন আপনার ভালোবাসার শতাংশ! 💖
 
-অথবা
+🔹 বিস্তারিত:
 দুইজনের নাম লিখে দেখুন ভালোবাসার মিল কত পার্সেন্ট।
+বন্ধু, ক্রাশ বা স্পেশাল কারও সাথে মিল এখনই চেক করুন!
 
-🔹 বিস্তারিত বিবরণ (Full Description):
-
-লাভ ক্যালকুলেটর একটি মজার অ্যাপ, যেখানে আপনি এবং আপনার প্রিয়জনের নাম লিখে সহজেই জানতে পারবেন ভালোবাসার শতাংশ।
-বন্ধু, ক্রাশ বা স্পেশাল কারও সাথে মিল কতটা — এখনই চেক করুন! 💕
-
-✔️ ব্যবহার করা খুবই সহজ
+✔️ ব্যবহার করা সহজ
 ✔️ দ্রুত ফলাফল
-✔️ বন্ধুদের সাথে শেয়ার করার সুবিধা
-
-এখনই ডাউনলোড করুন এবং মজার ছলে ভালোবাসার মিল পরীক্ষা করুন! ❤️`,
+✔️ বন্ধুদের সাথে শেয়ার`,
 'love.apk',
 ['love1.png','love2.png','love3.png']
 )">
 Details
 </div>
 
+<a href="love.apk" class="btn download">Download</a>
+</div>
+
 </section>
 
 
-<!-- Contact Section -->
-
+<!-- Contact -->
 <section class="contact">
-
 <h2>Contact Us</h2>
 
 <div class="contact-icons">
-
 <a href="https://www.facebook.com/profile.php?id=100087336788842" target="_blank">
 <img src="facebook.png">
 </a>
 
-<a href="https://wa.me/+8801581730282?text=আসসালামু আলাইকুম আমি Bengali Softwares App Store থেকে এসেছি । আপনি কি ফ্রি আছেন?" target="_blank">
+<a href="https://wa.me/+8801581730282" target="_blank">
 <img src="whatsapp.png">
 </a>
 
 <a href="https://x.com/RhRaju_i" target="_blank">
 <img src="twitter.png">
 </a>
-
-<a href="https://x.com/RhRaju_i" target="_blank">
-<img src="twitter.png">
-</a>
-
 </div>
-
 </section>
 
 
-<!-- popup -->
-
-<div class="popup" id="popup">
-
-<div class="popup-box">
-
+<!-- Popup -->
+<div class="popup" id="popup" onclick="outsideClick(event)">
+<div class="popup-box" onclick="event.stopPropagation()">
 <h2 id="name"></h2>
-
 <p id="desc"></p>
-
 <div id="screens"></div>
-
-<a id="download" class="btn download">
-Download
-</a>
-
-<div class="close" onclick="closePopup()">
-Close
+<a id="download" class="btn download">Download</a>
+<div class="close" onclick="closePopup()">Close</div>
 </div>
-
 </div>
-
-</div>
-
 
 
 <script>
 
 function showDetails(name, desc, apk, screenshots){
-
 document.getElementById("popup").style.display="flex";
-
 document.getElementById("name").innerText=name;
-
-document.getElementById("desc").innerText=desc;
-
+document.getElementById("desc").innerHTML=desc.replace(/\n/g,"<br>");
 document.getElementById("download").href=apk;
 
 let screens=document.getElementById("screens");
-
 screens.innerHTML="";
 
 screenshots.forEach(img=>{
 screens.innerHTML+=`<img src="${img}">`;
 });
-
 }
-
 
 function closePopup(){
 document.getElementById("popup").style.display="none";
 }
 
+function outsideClick(event){
+if(event.target.classList.contains("popup")){
+closePopup();
+}
+}
 
 function searchApp(value){
-
 let apps=document.querySelectorAll(".app");
 
 apps.forEach(app=>{
-
 let name=app.getAttribute("data-name").toLowerCase();
 
 if(name.includes(value.toLowerCase()))
 app.style.display="block";
 else
 app.style.display="none";
-
 });
-
 }
 
 </script>
-
 
 </body>
 </html>
