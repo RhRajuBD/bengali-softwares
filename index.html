@@ -109,7 +109,6 @@ border-radius:15px;
 max-width:400px;
 width:90%;
 text-align:center;
-position:relative;
 }
 
 .popup-box img{
@@ -127,23 +126,10 @@ border-radius:10px;
 cursor:pointer;
 }
 
-/* contact */
-
 .contact{
 background:white;
 padding:30px;
 text-align:center;
-}
-
-.contact-icons img{
-width:50px;
-margin:10px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.contact-icons img:hover{
-transform:scale(1.2);
 }
 </style>
 </head>
@@ -168,14 +154,13 @@ onclick="showDetails(
 'Lal Blood',
 'Find blood donors easily.\nFast and secure app.',
 'myapp.apk',
-['screenshot1.png','screenshot2.png','screenshot3.png']
+['screenshot1.png','screenshot2.png']
 )">
 Details
 </div>
 
 <a href="myapp.apk" class="btn download">Download</a>
 </div>
-
 
 <!-- Love Calculator -->
 <div class="app" data-name="Love Calculator">
@@ -185,22 +170,15 @@ Details
 <div class="btn details"
 onclick="showDetails(
 'Love Calculator',
-`🔹 অ্যাপ নাম (Title):
+`সহজেই জানুন আপনার ভালোবাসার শতাংশ! 💖
 
-লাভ ক্যালকুলেটর (Love Calculator)
+দুইজনের নাম লিখে মিল কত পার্সেন্ট দেখুন।
 
-🔹 ছোট বিবরণ:
-সহজেই জানুন আপনার ভালোবাসার শতাংশ! 💖
-
-🔹 বিস্তারিত:
-দুইজনের নাম লিখে দেখুন ভালোবাসার মিল কত পার্সেন্ট।
-বন্ধু, ক্রাশ বা স্পেশাল কারও সাথে মিল এখনই চেক করুন!
-
-✔️ ব্যবহার করা সহজ
+✔️ ব্যবহার সহজ
 ✔️ দ্রুত ফলাফল
 ✔️ বন্ধুদের সাথে শেয়ার`,
 'love.apk',
-['love1.png','love2.png','love3.png']
+['love1.png','love2.png']
 )">
 Details
 </div>
@@ -209,27 +187,6 @@ Details
 </div>
 
 </section>
-
-
-<!-- Contact -->
-<section class="contact">
-<h2>Contact Us</h2>
-
-<div class="contact-icons">
-<a href="https://www.facebook.com/profile.php?id=100087336788842" target="_blank">
-<img src="facebook.png">
-</a>
-
-<a href="https://wa.me/+8801581730282" target="_blank">
-<img src="whatsapp.png">
-</a>
-
-<a href="https://x.com/RhRaju_i" target="_blank">
-<img src="twitter.png">
-</a>
-</div>
-</section>
-
 
 <!-- Popup -->
 <div class="popup" id="popup" onclick="outsideClick(event)">
@@ -242,10 +199,12 @@ Details
 </div>
 </div>
 
-
 <script>
 
 function showDetails(name, desc, apk, screenshots){
+
+history.pushState({popup:true}, "");
+
 document.getElementById("popup").style.display="flex";
 document.getElementById("name").innerText=name;
 document.getElementById("desc").innerHTML=desc.replace(/\n/g,"<br>");
@@ -266,8 +225,17 @@ document.getElementById("popup").style.display="none";
 function outsideClick(event){
 if(event.target.classList.contains("popup")){
 closePopup();
+history.back();
 }
 }
+
+window.onpopstate = function(){
+let popup=document.getElementById("popup");
+
+if(popup.style.display==="flex"){
+popup.style.display="none";
+}
+};
 
 function searchApp(value){
 let apps=document.querySelectorAll(".app");
