@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bengali Softwares</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
+
+body{
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.search input{
+padding:10px 20px;
+border-radius:25px;
+border:none;
+outline:none;
+width:200px;
+}
+
+/* APP GRID */
+
+.apps{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+padding:50px 20px;
+}
+
+.app{
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
+width:220px;
+padding:20px;
+border-radius:20px;
+text-align:center;
+transition:0.3s;
+}
+
+.app:hover{
+transform:translateY(-10px);
+}
+
+.app img{
+width:90px;
+border-radius:20px;
+margin-bottom:10px;
+}
+
+.app h3{
+margin-bottom:10px;
+}
+
+.btn{
+display:block;
+padding:10px;
+margin:5px 0;
+border-radius:25px;
+text-decoration:none;
+color:white;
+font-size:14px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.details{
+background:#ff9800;
+}
+
+.download{
+background:#00e676;
+}
+
+.btn:hover{
+opacity:0.8;
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+}
+
+.modal-content{
+background:white;
+color:black;
+padding:25px;
+border-radius:20px;
+max-width:400px;
+text-align:center;
+animation:fadeIn 0.3s ease-in-out;
+}
+
+.modal-content img{
+width:80px;
+margin:5px;
+border-radius:10px;
+}
+
+@keyframes fadeIn{
+from{transform:scale(0.8);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+.close{
+background:red;
+color:white;
+padding:8px 15px;
+border-radius:10px;
+cursor:pointer;
+margin-top:10px;
+display:inline-block;
+}
+
+/* FOOTER */
+
+footer{
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+padding:30px;
+text-align:center;
+}
+
+.social img{
+width:40px;
+margin:10px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.social img:hover{
+transform:scale(1.2);
+}
+
+@media(max-width:600px){
+.search input{
+width:140px;
+}
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Bengali Softwares</div>
+<div class="search">
+<input type="text" placeholder="Search..." onkeyup="searchApp(this.value)">
+</div>
+</header>
+
+<section class="apps">
+
+<div class="app" data-name="Lal Blood">
+<img src="icon.png">
+<h3>Lal Blood</h3>
+<div class="btn details" onclick="openModal('Lal Blood','Find blood donors easily.','myapp.apk',['screenshot1.png','screenshot2.png','screenshot3.png'])">Details</div>
+<a href="myapp.apk" class="btn download">Download</a>
+</div>
+
+<div class="app" data-name="Love Calculator">
+<img src="love.png">
+<h3>Love Calculator</h3>
+<div class="btn details" onclick="openModal('Love Calculator','Check love percentage easily.','love.apk',['love1.png','love2.png','love3.png'])">Details</div>
+<a href="love.apk" class="btn download">Download</a>
+</div>
+
+</section>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+<div class="modal-content">
+<h2 id="appName"></h2>
+<p id="appDesc"></p>
+<div id="screens"></div>
+<a id="downloadBtn" class="btn download">Download</a>
+<div class="close" onclick="closeModal()">Close</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<h3>Contact Us</h3>
+
+<div class="social">
+
+<a href="https://www.facebook.com/profile.php?id=100087336788842" target="_blank">
+<img src="facebook.png">
+</a>
+
+<a href="https://wa.me/8801581730282" target="_blank">
+<img src="whatsapp.png">
+</a>
+
+<a href="https://x.com/yourusername" target="_blank">
+<img src="twitter.png">
+</a>
+
+</div>
+
+<p style="margin-top:15px;">© 2026 Bengali Softwares. All rights reserved.</p>
+
+</footer>
+
+<script>
+
+function openModal(name,desc,apk,shots){
+
+document.getElementById("modal").style.display="flex";
+document.getElementById("appName").innerText=name;
+document.getElementById("appDesc").innerText=desc;
+document.getElementById("downloadBtn").href=apk;
+
+let screen=document.getElementById("screens");
+screen.innerHTML="";
+
+shots.forEach(img=>{
+screen.innerHTML+=`<img src="${img}">`;
+});
+
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
+function searchApp(value){
+let apps=document.querySelectorAll(".app");
+
+apps.forEach(app=>{
+let name=app.getAttribute("data-name").toLowerCase();
+app.style.display=name.includes(value.toLowerCase())?"block":"none";
+});
+}
+
+</script>
+
+</body>
+</html>
