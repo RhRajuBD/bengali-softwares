@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রিয় অ্যাপ | Bengali Software</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #4f46e5; --glass: rgba(255, 255, 255, 0.95); }
+        body { font-family: 'Hind Siliguri', sans-serif; background: #0f172a; margin: 0; color: #1e293b; }
+
+        /* ড্রয়ার মেনু */
+        .drawer { height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; left: 0; background: #1e293b; overflow-x: hidden; transition: 0.4s; padding-top: 60px; box-shadow: 2px 0 10px rgba(0,0,0,0.5); }
+        .drawer a { padding: 15px 25px; text-decoration: none; font-size: 1.1rem; color: white; display: block; transition: 0.3s; }
+        .drawer a:hover { background: var(--primary); }
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; color: white; cursor: pointer; }
+
+        .top-bar { padding: 20px; color: white; display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 999; }
+        .menu-icon { font-size: 1.5rem; cursor: pointer; }
+        
+        .header { text-align: center; padding: 40px 20px; background: linear-gradient(45deg, #1e1b4b, #4338ca, #6d28d9); color: white; border-bottom: 5px solid #8b5cf6; }
+        .container { max-width: 700px; margin: -50px auto 50px; padding: 20px; }
+        
+        .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+        .app-card { background: var(--glass); padding: 20px; border-radius: 24px; text-align: center; text-decoration: none; color: #1e293b; transition: all 0.4s; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); }
+        .app-card:hover { transform: scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .app-card img { width: 70px; height: 70px; border-radius: 20px; margin-bottom: 15px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+        .app-card h3 { font-size: 1rem; margin: 0; font-weight: 700; }
+        
+        .empty-msg { text-align: center; color: #94a3b8; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <div id="myDrawer" class="drawer">
+        <span class="close-btn" onclick="closeNav()">&times;</span>
+        <a href="index.html"><i class="fas fa-home"></i> হোম</a>
+        <a href="category.html"><i class="fas fa-th-large"></i> ক্যাটাগরি</a>
+        <a href="favorite.html"><i class="fas fa-heart"></i> প্রিয় অ্যাপ</a>
+        <a href="profile.html"><i class="fas fa-user"></i> প্রোফাইল</a>
+    </div>
+
+    <div class="top-bar">
+        <i class="fas fa-bars menu-icon" onclick="openNav()"></i>
+    </div>
+
+    <div class="header">
+        <h1>প্রিয় অ্যাপসমূহ</h1>
+    </div>
+
+    <div class="container">
+        <div class="app-grid">
+            <a href="smart-school.html" class="app-card">
+                <img src="app_icon.png" alt="App">
+                <h3>Smart School</h3>
+            </a>
+            </div>
+    </div>
+
+    <script>
+        function openNav() { document.getElementById("myDrawer").style.width = "250px"; }
+        function closeNav() { document.getElementById("myDrawer").style.width = "0"; }
+    </script>
+</body>
+</html>

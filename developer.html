@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডেভেলপার প্রোফাইল</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --bg-color: #0d121c; 
+            --accent-orange: #ff7657; 
+            --sub-text: #8e96a3; 
+            --primary: #4f46e5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg-color); color: white; }
+
+        /* ড্রয়ার মেনু - index.html এর স্টাইল */
+        .drawer { height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; left: 0; background: #1e293b; overflow-x: hidden; transition: 0.4s; padding-top: 60px; box-shadow: 2px 0 10px rgba(0,0,0,0.5); }
+        .drawer a { padding: 15px 25px; text-decoration: none; font-size: 1.1rem; color: white; display: block; transition: 0.3s; }
+        .drawer a:hover { background: var(--primary); }
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; color: white; cursor: pointer; }
+
+        /* টপ বার */
+        .top-bar { padding: 20px; display: flex; align-items: center; background: #0f172a; position: sticky; top: 0; z-index: 999; }
+        .menu-icon { font-size: 1.5rem; cursor: pointer; color: white; }
+
+        /* ডেভেলপার ডিজাইনের মেইন র‍্যাপার */
+        .main-wrapper { max-width: 420px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+
+        /* আগের সেই স্টাইলগুলো */
+        .hero-section { padding: 20px; text-align: center; }
+        .hello-text { font-size: 1.8rem; font-weight: 600; }
+        .hello-text span { color: var(--accent-orange); }
+        .iam-text { font-size: 1.8rem; border-bottom: 2px solid var(--accent-orange); display: inline-block; margin-bottom: 10px; }
+        
+        .profile-image-container { position: relative; margin: 30px auto; width: 220px; height: 220px; display: flex; justify-content: center; align-items: center; }
+        .profile-image-container::before { content: ''; position: absolute; width: 100%; height: 100%; background: var(--accent-orange); border-radius: 50%; opacity: 0.15; }
+        .profile-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; z-index: 2; border: 3px solid var(--accent-orange); }
+
+        .skills-section { padding: 10px 20px; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; color: var(--sub-text); }
+        .about-section { padding: 30px 20px; text-align: center; }
+        .about-text { color: var(--sub-text); line-height: 1.8; margin-bottom: 30px; }
+        
+        .stats-section { display: flex; justify-content: space-around; width: 100%; margin-top: 20px; }
+        .stat-number { font-size: 1.4rem; font-weight: 700; }
+        .stat-number span { color: var(--accent-orange); }
+        .stat-label { font-size: 0.75rem; color: var(--sub-text); }
+    </style>
+</head>
+<body>
+
+    <div id="myDrawer" class="drawer">
+        <span class="close-btn" onclick="closeNav()">&times;</span>
+        <a href="index.html"><i class="fas fa-home"></i> হোম</a>
+        <a href="category.html"><i class="fas fa-th-large"></i> ক্যাটাগরি</a>
+        <a href="favorite.html"><i class="fas fa-heart"></i> প্রিয় অ্যাপ</a>
+        <a href="developer.html"><i class="fas fa-user"></i> প্রোফাইল</a>
+    </div>
+
+    <div class="top-bar">
+        <i class="fas fa-bars menu-icon" onclick="openNav()"></i>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="hero-section">
+            <div class="hello-text">Hello <span>.</span></div>
+            <div class="iam-text">I'm Jensen Omega</div>
+        </div>
+
+        <div class="profile-image-container">
+            <img src="profile.jpg" alt="Developer" class="profile-img">
+        </div>
+
+        <div class="skills-section">
+            <span>HTML5</span> • <span>CSS3</span> • <span>Git</span> • <span>Node.js</span> • <span>React</span>
+        </div>
+
+        <div class="about-section">
+            <h2>About me</h2>
+            <p class="about-text">ফটোগ্রাফি থেকে আমার যাত্রা শুরু। বর্তমানে আমি সফটওয়্যার ডেভেলপমেন্টে নতুন কিছু তৈরির নেশায় কাজ করছি।</p>
+            
+            <div class="stats-section">
+                <div><div class="stat-number">120<span>+</span></div><div class="stat-label">Projects</div></div>
+                <div><div class="stat-number">95<span>%</span></div><div class="stat-label">Satisfaction</div></div>
+                <div><div class="stat-number">10<span>+</span></div><div class="stat-label">Years</div></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openNav() { document.getElementById("myDrawer").style.width = "250px"; }
+        function closeNav() { document.getElementById("myDrawer").style.width = "0"; }
+    </script>
+</body>
+</html>

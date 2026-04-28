@@ -1,261 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bengali Softwares App Store</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bengali Software | প্রফেশনাল স্টোর</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #4f46e5; --glass: rgba(255, 255, 255, 0.95); }
+        body { font-family: 'Hind Siliguri', sans-serif; background: #0f172a; margin: 0; color: #1e293b; }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+        /* ড্রয়ার মেনু */
+        .drawer { height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; left: 0; background: #1e293b; overflow-x: hidden; transition: 0.4s; padding-top: 60px; box-shadow: 2px 0 10px rgba(0,0,0,0.5); }
+        .drawer a { padding: 15px 25px; text-decoration: none; font-size: 1.1rem; color: white; display: block; transition: 0.3s; }
+        .drawer a:hover { background: var(--primary); }
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; color: white; cursor: pointer; }
 
-<style>
-body{
-margin:0;
-font-family:Poppins;
-background:#f1f3f6;
-}
+        /* টপ বার */
+        .top-bar { padding: 20px; background: #0f172a; display: flex; align-items: center; position: sticky; top: 0; z-index: 999; }
+        .menu-icon { font-size: 1.5rem; cursor: pointer; color: white; }
+        
+        .header { text-align: center; padding: 40px 20px; background: linear-gradient(45deg, #1e1b4b, #4338ca, #6d28d9); color: white; border-bottom: 5px solid #8b5cf6; }
+        .container { max-width: 700px; margin: -50px auto 50px; padding: 20px; }
+        
+        .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+        .app-card { background: var(--glass); padding: 20px; border-radius: 24px; text-align: center; text-decoration: none; color: #1e293b; transition: all 0.4s; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); }
+        .app-card:hover { transform: scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .app-card img { width: 70px; height: 70px; border-radius: 20px; margin-bottom: 15px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+        .app-card h3 { font-size: 1rem; margin: 0; font-weight: 700; }
 
-header{
-background:#00c853;
-color:white;
-padding:15px;
-font-size:22px;
-font-weight:bold;
-text-align:center;
-}
-
-.search-box{
-padding:15px;
-text-align:center;
-background:white;
-}
-
-.search-box input{
-width:90%;
-max-width:400px;
-padding:12px;
-border-radius:25px;
-border:1px solid #ccc;
-font-size:16px;
-}
-
-.apps{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-padding:20px;
-}
-
-.app{
-background:white;
-width:200px;
-padding:15px;
-border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-text-align:center;
-transition:0.3s;
-}
-
-.app:hover{
-transform:translateY(-5px);
-}
-
-.app img{
-width:80px;
-border-radius:20px;
-}
-
-.app h3{
-margin:10px 0;
-font-size:18px;
-}
-
-.btn{
-display:block;
-padding:10px;
-margin:5px;
-border-radius:20px;
-text-decoration:none;
-color:white;
-cursor:pointer;
-}
-
-.download{
-background:#00c853;
-}
-
-.details{
-background:#2962ff;
-}
-
-/* popup */
-
-.popup{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.7);
-justify-content:center;
-align-items:center;
-}
-
-.popup-box{
-background:white;
-padding:20px;
-border-radius:15px;
-max-width:400px;
-width:90%;
-text-align:center;
-}
-
-.popup-box img{
-width:70px;
-margin:5px;
-border-radius:10px;
-}
-
-.close{
-background:red;
-color:white;
-padding:10px;
-margin-top:10px;
-border-radius:10px;
-cursor:pointer;
-}
-
-.contact{
-background:white;
-padding:30px;
-text-align:center;
-}
-</style>
+        .footer { text-align: center; padding: 30px; color: #94a3b8; }
+        .social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; }
+        .social-btn { width: 45px; height: 45px; border-radius: 12px; background: #1e293b; display: inline-flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: 0.3s; }
+        .social-btn:hover { background: var(--primary); }
+    </style>
 </head>
-
 <body>
 
-<header>Bengali Softwares App Store</header>
+    <div id="myDrawer" class="drawer">
+        <span class="close-btn" onclick="closeNav()">&times;</span>
+        <a href="#" onclick="navigate('index.html')"><i class="fas fa-home"></i> হোম</a>
+        <a href="#" onclick="navigate('category.html')"><i class="fas fa-th-large"></i> ক্যাটাগরি</a>
+        <a href="#" onclick="navigate('favorite.html')"><i class="fas fa-heart"></i> প্রিয় অ্যাপ</a>
+        <a href="#" onclick="navigate('developer.html')"><i class="fas fa-user"></i> প্রোফাইল</a>
+    </div>
 
-<div class="search-box">
-<input type="text" placeholder="Search app..." onkeyup="searchApp(this.value)">
-</div>
+    <div class="top-bar">
+        <i class="fas fa-bars menu-icon" onclick="openNav()"></i>
+    </div>
 
-<section class="apps">
+    <div class="header">
+        <h1>Bengali Software</h1>
+        <p style="opacity: 0.8;">আধুনিক অ্যাপগুলোর অফিশিয়াল স্টোর</p>
+    </div>
 
-<!-- Lal Blood -->
-<div class="app" data-name="Lal Blood">
-<img src="icon.png">
-<h3>Lal Blood</h3>
+    <div class="container">
+        <div class="app-grid">
+            <a href="#" onclick="navigate('smart-school.html')" class="app-card">
+                <img src="app_icon.png" alt="App">
+                <h3>Smart School</h3>
+            </a>
+            <a href="#" onclick="navigate('lal-blood.html')" class="app-card">
+                <img src="ic_love.png" alt="App">
+                <h3>Love Check</h3>
+            </a>
+        </div>
+    </div>
 
-<div class="btn details"
-onclick="showDetails(
-'Lal Blood',
-'Find blood donors easily.\nFast and secure app.',
-'myapp.apk',
-['screenshot1.png','screenshot2.png']
-)">
-Details
-</div>
+    <footer class="footer">
+        <p>ডেভেলপারের সাথে যোগাযোগ</p>
+        <div class="social-links">
+            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="social-btn"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2026 Bengali Software</p>
+    </footer>
 
-<a href="myapp.apk" class="btn download">Download</a>
-</div>
+    <script>
+        function openNav() { document.getElementById("myDrawer").style.width = "250px"; }
+        function closeNav() { document.getElementById("myDrawer").style.width = "0"; }
+        
+        // ন্যাভিগেশন ফাংশন (হিস্ট্রি সমস্যা এড়াতে)
+        function navigate(url) {
+            window.location.replace(url);
+        }
 
-<!-- Love Calculator -->
-<div class="app" data-name="Love Calculator">
-<img src="love.png">
-<h3>Love Calculator</h3>
-
-<div class="btn details"
-onclick="showDetails(
-'Love Calculator',
-`লাভ ক্যালকুলেটর (Love Calculator)
-
-🔹 ছোট বিবরণ:
-সহজেই জানুন আপনার ভালোবাসার শতাংশ! 💖
-
-🔹 বিস্তারিত:
-দুইজনের নাম লিখে দেখুন ভালোবাসার মিল কত পার্সেন্ট।
-বন্ধু, ক্রাশ বা স্পেশাল কারও সাথে মিল এখনই চেক করুন!
-
-✔️ ব্যবহার করা সহজ
-✔️ দ্রুত ফলাফল
-✔️ বন্ধুদের সাথে শেয়ার`,
-'love.apk',
-['love1.png','love2.png']
-)">
-Details
-</div>
-
-<a href="love.apk" class="btn download">Download</a>
-</div>
-
-</section>
-
-<!-- Popup -->
-<div class="popup" id="popup" onclick="outsideClick(event)">
-<div class="popup-box" onclick="event.stopPropagation()">
-<h2 id="name"></h2>
-<p id="desc"></p>
-<div id="screens"></div>
-<a id="download" class="btn download">Download</a>
-<div class="close" onclick="closePopup()">Close</div>
-</div>
-</div>
-
-<script>
-
-function showDetails(name, desc, apk, screenshots){
-
-history.pushState({popup:true}, "");
-
-document.getElementById("popup").style.display="flex";
-document.getElementById("name").innerText=name;
-document.getElementById("desc").innerHTML=desc.replace(/\n/g,"<br>");
-document.getElementById("download").href=apk;
-
-let screens=document.getElementById("screens");
-screens.innerHTML="";
-
-screenshots.forEach(img=>{
-screens.innerHTML+=`<img src="${img}">`;
-});
-}
-
-function closePopup(){
-document.getElementById("popup").style.display="none";
-}
-
-function outsideClick(event){
-if(event.target.classList.contains("popup")){
-closePopup();
-history.back();
-}
-}
-
-window.onpopstate = function(){
-let popup=document.getElementById("popup");
-
-if(popup.style.display==="flex"){
-popup.style.display="none";
-}
-};
-
-function searchApp(value){
-let apps=document.querySelectorAll(".app");
-
-apps.forEach(app=>{
-let name=app.getAttribute("data-name").toLowerCase();
-
-if(name.includes(value.toLowerCase()))
-app.style.display="block";
-else
-app.style.display="none";
-});
-}
-
-</script>
-
+        // ড্রয়ারের বাইরে ক্লিক করলে বন্ধ হওয়ার অপশন
+        document.addEventListener('click', function(event) {
+            var drawer = document.getElementById("myDrawer");
+            var menuIcon = document.querySelector('.menu-icon');
+            if (!drawer.contains(event.target) && !menuIcon.contains(event.target)) {
+                closeNav();
+            }
+        });
+    </script>
 </body>
 </html>
